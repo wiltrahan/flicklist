@@ -43,16 +43,17 @@ function discoverMovies(callback) {
  * re-renders the page with new content, based on the current state of the model
  */
 function render() {
-  // TODO 7
+  // TODO 7 ***DONE***
   // clear everything from both lists
   $('#section-watchlist ul').empty();
   $('#section-browse ul').empty();
 
-  // TODO 6
+  // TODO 6 ***DONE***
   // for each movie on the user's watchlist, insert a list item into the <ul> in the watchlist section
   	model.watchlistItems.forEach(function(movie){
   		var movieTitle = $('<p></p>').text(movie.original_title);
-			$('#section-watchlist ul').append(movieTitle);
+  		var movieList = $('<li></li>').append(movieTitle)
+			$('#section-watchlist ul').append(movieList);
   	})
 
   // for each movie on the current browse list,
