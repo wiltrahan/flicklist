@@ -1,11 +1,11 @@
-
+//object holding two empty arrays, to be filled with movie titles
 
 var model = {
   watchlistItems: [],
   browseItems: []
 }
 
-
+//object containing the api root, and key
 var api = {
   root: "https://api.themoviedb.org/3",
   token: "a50e858e6b9ee58df61b788f341003e7" // TODO 0 put your api key here ***COMPLETE***
@@ -17,6 +17,12 @@ var api = {
  * if successful, updates the model.browseItems appropriately, and then invokes
  * the callback function that was passed in
  */
+
+//ajax call with 2 parameters, the url which comes from api.root + the string /discover/movie
+//which is added to the end of the root.  the second parameter is the data object, which contains
+//the api_key and that is the api.token, which comes from the api object from above.
+//if everything works, the success method is called, which then takes the results and adds them to the
+//array 'browseItems' located in the model object
 function discoverMovies(callback) {
 	$.ajax({
 		url: api.root + "/discover/movie",
@@ -29,8 +35,10 @@ function discoverMovies(callback) {
 
 			// TODO 2 ***COMPLETE***
 			// update the model, setting its .browseItems property equal to the movies we recieved in the response
+
         model.browseItems = response.results;
-			// invoke the callback function that was passed in.
+
+      // invoke the callback function that was passed in.
 			callback();
 		}
 	});
@@ -66,14 +74,13 @@ function render() {
 
 		// TODO 4 ***COMPLETE***
 		// the list item should include a button that says "Add to Watchlist"
+    // TODO 5 ***COMPLETE***
+    // when the button is clicked, this movie should be added to the model's watchlist and render() should be called again
     var addButton = $('<button></button>').text('Add to Watchlist').click(function(){
         model.watchlistItems.push(movie);
         render();
     });
     movieList.append(addButton);
-
-		// TODO 5 ***COMPLETE***
-		// when the button is clicked, this movie should be added to the model's watchlist and render() should be called again
   });
 
 }
