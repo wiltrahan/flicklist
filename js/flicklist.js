@@ -64,27 +64,27 @@ function searchMovies(query, callback) {
   // when the response comes back, do all the tasks below:
 
 
-  // TODO 4a
+  // TODO 4a  ***DONE***
   // create a new variable called keywordIDs whose value is an array of all the
   // `.id` values of each of the objects inside reponse.results
   // HINT use the array map function to map over response.results
 
 
-  // TODO 4b
+  // TODO 4b ***DONE***
   // create a new variable called keywordsString by converting
   // the array of ids to a comma-separated string, e.g.
   //      "192305,210090,210092,210093"
   // HINT: use the Array join function
 
 
-  // TODO 4c
+  // TODO 4c ***DONE***
   // instead of a comma-separated string, we want the ids
   // to be spearated with the pipe "|" character, eg:
   //     "192305|210090|210092|210093"
   // HINT: pass an argument to the join function
 
 
-  // TODO 4d
+  // TODO 4d ***DONE***
   // when the response comes back, call discoverMovies,
   // passing along 2 arguments:
   // 1) the callback
@@ -99,6 +99,15 @@ function searchMovies(query, callback) {
     },
     success: function(response) {
       console.log(response);
+
+
+      var keywordIDs = response.results.map(function(movieObj){
+        return movieObj.id;
+      });
+
+      var keywordsString = keywordIDs.join('|');
+
+      discoverMovies(callback, keywordsString);
     }
   });
 }
